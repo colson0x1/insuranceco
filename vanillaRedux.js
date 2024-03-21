@@ -48,7 +48,7 @@ const accounting = (bagOfMoney = 100000, action) => {
   if (action.type === 'CREATE_CLAIM') {
     return bagOfMoney - action.payload.amountOfMoneyToCollect;
   } else if (action.type === 'CREATE_POLICY') {
-    return bagOfMoney + action.payload.amountOfMoneyToCollect;
+    return bagOfMoney + action.payload.amount;
   }
 
   return bagOfMoney;
@@ -76,7 +76,18 @@ const store = createStore(ourDepartments);
 // store object represents our entire Redux application
 // console.log(store);
 
-const action = createPolicy('Stillhome', 60);
+// const action = createPolicy('Stillhome', 60);
 // console.log(action);
-store.dispatch(action);
+// store.dispatch(action);
+
+store.dispatch(createPolicy('Stillhome', 60));
+store.dispatch(createPolicy('Grimmy', 50));
+store.dispatch(createPolicy('Angelina', 40));
+
+store.dispatch(createClaim('Stillhome', 600));
+store.dispatch(createClaim('Grimmy', 500));
+store.dispatch(createClaim('Angelina', 400));
+
+store.dispatch(deletePolicy('Angelina'));
+
 console.log(store.getState());
