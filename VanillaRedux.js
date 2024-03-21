@@ -1,3 +1,5 @@
+import { createStore, combineReducers } from 'redux';
+
 console.clear();
 
 // People dropping off a form (Action Creators)
@@ -61,3 +63,15 @@ const policies = (listOfPolicies = [], action) => {
 
   return listOfPolicies;
 };
+
+// To wire up our reducers, we use combineReducers function
+const ourDepartments = combineReducers({
+  accounting: accounting,
+  claimsHistory: claimsHistory,
+  policies: policies,
+});
+
+const store = createStore(ourDepartments)l
+
+// store object represents our entire Redux application
+console.log(store);
