@@ -44,7 +44,7 @@ const claimsHistory = (oldListOfClaims = [], action) => {
   return oldListOfClaims;
 };
 
-const accounting = (bagOfMoney = 100, action) => {
+const accounting = (bagOfMoney = 100000, action) => {
   if (action.type === 'CREATE_CLAIM') {
     return bagOfMoney - action.payload.amountOfMoneyToCollect;
   } else if (action.type === 'CREATE_POLICY') {
@@ -71,7 +71,12 @@ const ourDepartments = combineReducers({
   policies: policies,
 });
 
-const store = createStore(ourDepartments)l
+const store = createStore(ourDepartments);
 
 // store object represents our entire Redux application
-console.log(store);
+// console.log(store);
+
+const action = createPolicy('Stillhome', 60);
+// console.log(action);
+store.dispatch(action);
+console.log(store.getState());
